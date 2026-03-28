@@ -1,0 +1,21 @@
+<Solution>
+  <Folder Name="/Core/">
+    <Project Path="ActionCommandGame.Abstractions/ActionCommandGame.Abstractions.csproj" />
+    <Project Path="ActionCommandGame.Configuration/ActionCommandGame.Configuration.csproj" />
+    <Project Path="ActionCommandGame.Extensions/ActionCommandGame.Extensions.csproj" />
+    <Project Path="ActionCommandGame.Helpers/ActionCommandGame.Helpers.csproj" />
+    <Project Path="ActionCommandGame.Model/ActionCommandGame.Model.csproj" />
+    <Project Path="ActionCommandGame.Repository/ActionCommandGame.Repository.csproj" />
+  </Folder>
+  <Folder Name="/Services/">
+    <Project Path="ActionCommandGame.Services.Abstractions/ActionCommandGame.Services.Abstractions.csproj" />
+    <Project Path="ActionCommandGame.Services.Model/ActionCommandGame.Services.Model.csproj" />
+    <Project Path="ActionCommandGame.Services/ActionCommandGame.Services.csproj" />
+  </Folder>
+  <Folder Name="/Tests/">
+    <Project Path="ActionCommandGame.Tests/ActionCommandGame.Tests.csproj" />
+  </Folder>
+  <Folder Name="/UI/">
+    <Project Path="ActionCommandGame.Ui.Console/ActionCommandGame.Ui.ConsoleApp.csproj" />
+  </Folder>
+</Solution>
