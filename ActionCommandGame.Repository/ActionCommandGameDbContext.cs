@@ -26,6 +26,12 @@ namespace ActionCommandGame.Repository
 
         public void Initialize()
         {
+
+            if (PositiveGameEvents.Any())
+            {
+                return;
+            }
+
             GeneratePositiveGameEvents();
             GenerateNegativeGameEvents();
             GenerateAttackItems();

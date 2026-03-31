@@ -16,6 +16,7 @@
     <Project Path="ActionCommandGame.Tests/ActionCommandGame.Tests.csproj" />
   </Folder>
   <Folder Name="/UI/">
+    <Project Path="ActionCommandGame.Api/ActionCommandGame.Api.csproj" Id="4d1cb2f6-aff0-4f76-acad-1be0cc6646e3" />
     <Project Path="ActionCommandGame.Ui.Console/ActionCommandGame.Ui.ConsoleApp.csproj" />
   </Folder>
 </Solution>
