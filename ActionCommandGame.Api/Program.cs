@@ -26,6 +26,7 @@ builder.Services.AddScoped<IPositiveGameEventService, PositiveGameEventService>(
 
 builder.Services.AddOpenApi();
 
+
 var app = builder.Build();
 
 using (var scope = app.Services.CreateScope())

@@ -19,4 +19,6 @@
     <Project Path="ActionCommandGame.Api/ActionCommandGame.Api.csproj" Id="4d1cb2f6-aff0-4f76-acad-1be0cc6646e3" />
     <Project Path="ActionCommandGame.Ui.Console/ActionCommandGame.Ui.ConsoleApp.csproj" />
   </Folder>
+  <Project Path="ActionCommandGame.Sdk/ActionCommandGame.Sdk.csproj" Id="0a597215-63f8-4dbc-9b7a-c231ce656fac" />
+  <Project Path="ActionCommandGame.Ui.Mvc/ActionCommandGame.Ui.Mvc.csproj" Id="f26026ba-37cb-452f-8386-0936350f8161" />
 </Solution>
