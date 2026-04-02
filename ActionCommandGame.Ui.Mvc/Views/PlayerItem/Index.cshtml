@@ -1,0 +1,32 @@
+﻿@using ActionCommandGame.Services.Model.Results
+@model IList<PlayerItemResult>
+
+@{
+    ViewData["Title"] = "Inventory";
+}
+
+<h1>Inventory</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Item</th>
+            <th>Brandstof</th>
+            <th>Aanval</th>
+            <th>Verdediging</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model ?? [])
+        {
+            <tr>
+                <td>@item.Name</td>
+                <td>@item.RemainingFuel</td>
+                <td>@item.RemainingAttack</td>
+                <td>@item.RemainingDefense</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a asp-controller="Game" asp-action="Index" class="btn btn-primary">Terug</a>

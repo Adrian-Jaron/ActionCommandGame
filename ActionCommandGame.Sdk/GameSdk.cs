@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-using System.Net.Http.Json;
+﻿using System.Net.Http.Json;
 using ActionCommandGame.Services.Model.Core;
 using ActionCommandGame.Services.Model.Results;
-using Microsoft.Extensions.DependencyInjection;
-using System.Runtime.CompilerServices;
 
 namespace ActionCommandGame.Sdk
 {
@@ -14,31 +8,16 @@ namespace ActionCommandGame.Sdk
     {
         private readonly HttpClient _httpClient = httpClientFactory.CreateClient("ActionCommandGameApi");
 
-        public async Task<ServiceResult<PlayerItemResult>?> Get(int id)
+        public async Task<ServiceResult<GameResult>?> PerformAction(int playerId)
         {
-            var response = await _httpClient.GetAsync($"api/playeritem/{id}");
-            return await response.Content.ReadFromJsonAsync<ServiceResult<PlayerItemResult>?>();
+            var response = await _httpClient.GetAsync($"api/game/perform-action/{playerId}");
+            return await response.Content.ReadFromJsonAsync<ServiceResult<GameResult>>();
         }
 
-        public async Task<ServiceResult<IList<PlayerItemResult>>?> Find(int playerId)
+        public async Task<ServiceResult<BuyResult>?> Buy(int playerId, int itemId)
         {
-            var response = await _httpClient.GetAsync($"api/playeritem?playerId={playerId}");
-            return await response.Content.ReadFromJsonAsync<ServiceResult<IList<PlayerItemResult>>>();
+            var response = await _httpClient.PostAsync($"api/game/buy/{playerId}/{itemId}", null);
+            return await response.Content.ReadFromJsonAsync<ServiceResult<BuyResult>>();
         }
-
-        public async Task<ServiceResult<PlayerItemResult>?> Create(int playerId, int itemId)
-        {
-            var response = await _httpClient.PostAsync($"api/playeritem/{playerId}/{itemId}", null);
-            return await response.Content.ReadFromJsonAsync<ServiceResult<PlayerItemResult>?>();
-        }
-
-        public async Task<ServiceResult?> Delete(int id)
-        {
-            var response = await _httpClient.DeleteAsync($"api/playeritem/{id}");
-            return await response.Content.ReadFromJsonAsync<ServiceResult>();
-        }
-
     }
-
 }
-

@@ -1,0 +1,28 @@
+﻿@using ActionCommandGame.Services.Model.Results;
+@model IList<PlayerResult>
+
+@{
+    ViewData["Title"] = "Leaderboard";
+}
+
+<h1>Leaderboard</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <td>Naam</td>
+            <td>Geld</td>
+            <td>Experience</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var player in Model ?? [])
+        {
+            <tr>
+                <td>@player.Name</td>
+                <td>€@player.Money</td>
+                <td>@player.Experience</td>
+            </tr>
+        }
+    </tbody>
+</table>
