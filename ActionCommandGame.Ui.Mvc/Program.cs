@@ -1,5 +1,6 @@
 using ActionCommandGame.Sdk;
 
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllersWithViews();
@@ -14,9 +15,12 @@ builder.Services.AddScoped<GameSdk>();
 builder.Services.AddScoped<PlayerSdk>();
 builder.Services.AddScoped<ItemSdk>();
 builder.Services.AddScoped<PlayerItemSdk>();
+builder.Services.AddSession();
+builder.Services.AddScoped<AuthSdk>();
 
 var app = builder.Build();
 
+app.UseSession();  
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();

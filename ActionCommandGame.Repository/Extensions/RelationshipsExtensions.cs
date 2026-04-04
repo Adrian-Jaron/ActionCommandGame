@@ -1,5 +1,6 @@
 ﻿using ActionCommandGame.Model;
 using Microsoft.EntityFrameworkCore;
+using ActionCommandGame.Repository;
 
 namespace ActionCommandGame.Repository.Extensions
 {
@@ -9,6 +10,7 @@ namespace ActionCommandGame.Repository.Extensions
         {
             builder.ConfigurePlayerItem();
             builder.ConfigurePlayer();
+            builder.ConfigureApplicationUser();
         }
 
         private static void ConfigurePlayerItem(this ModelBuilder builder)
@@ -41,5 +43,14 @@ namespace ActionCommandGame.Repository.Extensions
                 .WithMany(u => u.DefensePlayers)
                 .HasForeignKey(a => a.CurrentDefensePlayerItemId);
         }
+
+        private static void ConfigureApplicationUser(this ModelBuilder builder)
+        {
+            builder.Entity<ApplicationUser>()
+                .HasMany(u => u.Players)
+                .WithOne()
+                .HasForeignKey(p => p.UserId);
+        }
     }
+
 }

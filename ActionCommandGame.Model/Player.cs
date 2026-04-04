@@ -6,6 +6,7 @@ namespace ActionCommandGame.Model
     {
 
         public int Id { get; set; }
+        public string? UserId { get; set; }
         public required string Name { get; set; }
         public int Money { get; set; }
         public int Experience { get; set; }
