@@ -18,6 +18,7 @@ builder.Services.AddScoped<PlayerItemSdk>();
 builder.Services.AddSession();
 builder.Services.AddScoped<AuthSdk>();
 
+
 var app = builder.Build();
 
 app.UseSession();  
@@ -27,6 +28,6 @@ app.UseRouting();
 app.UseAuthorization();
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=Auth}/{action=Index}/{id?}");
 
 app.Run();
