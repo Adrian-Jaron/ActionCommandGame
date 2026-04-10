@@ -9,7 +9,7 @@ namespace ActionCommandGame.Sdk
 
         public async Task<string?> Register(UserRegisterRequest request)
         {
-            var response = await _httpClient.PostAsJsonAsync("/api/auth/register", request);
+            var response = await _httpClient.PostAsJsonAsync("api/auth/register", request);
             if (response.IsSuccessStatusCode)
             {
                 return await response.Content.ReadAsStringAsync();
@@ -17,10 +17,10 @@ namespace ActionCommandGame.Sdk
             return null;
         }
         
-        public async Task<string?> Login(UserSignInRequest request) { 
-        
-            var response = await _httpClient.PostAsJsonAsync("/api/auth/login", request);
-            if(response.IsSuccessStatusCode)
+        public async Task<string?> Login(UserSignInRequest request) {
+
+            var response = await _httpClient.PostAsJsonAsync("api/auth/login", request);
+            if (response.IsSuccessStatusCode)
             {
                 var result = await response.Content.ReadFromJsonAsync<TokenResult>();
                 return result?.Token;

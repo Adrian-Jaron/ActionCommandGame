@@ -6,21 +6,17 @@
 
 <h1>Login</h1>
 
-<form asp-action="Login" method="post">
-   <div asp-validation-summary="All" class="text-danger"></div>
-
-   <div class="mb-3">
-       <label asp-for="Email" class="form-label">Email</label>
-       <input asp-for="Email" class="form-control" />
-       <span asp-validation-for="Email" class="text-danger"></span>
+<form action="/Auth/Login" method="post">
+    <div class="mb-3">
+        <label for="Email"> Email</label>
+        <input type="email" id="Email" name="Email" class="form-control" />
     </div>
 
     <div class="mb-3">
-        <label asp-for="Password" class="form-label">Wachtwoord</label>
-        <input asp-for="Password" type="password" class="form-control" />
-        <span asp-validation-for="Password" class="text-danger"></span>
+        <label for="Password">Wachtwoord</label>
+        <input type="password" id="password" name="Password" class="form-control" />
     </div>
 
-    <button type="submit" class="btn btn-primary">Inloggen</button>
-    <a asp-action="Register" class="btn btn-secondary">Registreren</a>
+    <button type="submit" class="btn btn-primary">Login</button>
+    <a href="/Auth/Register" class="btn btn-secondary">Registreren</a>
 </form>

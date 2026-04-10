@@ -8,15 +8,16 @@ builder.Services.AddControllersWithViews();
 // SDK registreren
 builder.Services.AddHttpClient("ActionCommandGameApi", client =>
 {
-    client.BaseAddress = new Uri("https://localhost:7000/"); // poort van jouw API
+    client.BaseAddress = new Uri("https://localhost:7271/"); // API poort
 });
 
 builder.Services.AddScoped<GameSdk>();
 builder.Services.AddScoped<PlayerSdk>();
 builder.Services.AddScoped<ItemSdk>();
 builder.Services.AddScoped<PlayerItemSdk>();
-builder.Services.AddSession();
 builder.Services.AddScoped<AuthSdk>();
+builder.Services.AddSession();
+
 
 
 var app = builder.Build();
@@ -28,6 +29,6 @@ app.UseRouting();
 app.UseAuthorization();
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Auth}/{action=Index}/{id?}");
+    pattern: "{controller=Auth}/{action=Login}/{id?}");
 
 app.Run();
