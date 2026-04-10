@@ -1,4 +1,4 @@
-﻿@using ActionCommandGame.Services.Model.Results;
+﻿@using ActionCommandGame.Services.Model.Results
 @model IList<PlayerResult>
 
 @{
@@ -7,22 +7,31 @@
 
 <h1>Leaderboard</h1>
 
-<table class="table">
-    <thead>
-        <tr>
-            <td>Naam</td>
-            <td>Geld</td>
-            <td>Experience</td>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var player in Model ?? [])
-        {
+@if (Model == null || !Model.Any())
+{
+    <p>Geen spelers gevonden.</p>
+}
+else
+{
+    <table class="table">
+        <thead>
             <tr>
-                <td>@player.Name</td>
-                <td>€@player.Money</td>
-                <td>@player.Experience</td>
+                <th>Naam</th>
+                <th>Geld</th>
+                <th>Experience</th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @foreach (var player in Model)
+            {
+                <tr>
+                    <td>@player.Name</td>
+                    <td>€@player.Money</td>
+                    <td>@player.Experience</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+<a href="/Game/Index">Terug</a>

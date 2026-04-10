@@ -1,41 +1,39 @@
-﻿@using ActionCommandGame.Services.Model.Core
-@using ActionCommandGame.Services.Model.Results
-@model ServiceResult<GameResult>
-
-@{
-    ViewData["Title"] = "Resultaat";
-}
-
-<h1>Resultaat</h1>
-
-@if (Model?.Data?.PositiveGameEvent != null)
+﻿@if (Model?.Data == null)
 {
-    <div class="alert alert-success">
-        <h4>@Model.Data.PositiveGameEvent.Name</h4>
-        <p>@Model.Data.PositiveGameEvent.Description</p>
-        @if (Model.Data.PositiveGameEvent.Money > 0)
-        {
-            <p>Je verdiende €@Model.Data.PositiveGameEvent.Money</p>
-        }
-    </div>
+    <p>Geen resultaat — playerId niet gevonden</p>
 }
-
-@if (Model?.Data?.NegativeGameEvent != null)
+else
 {
-    <div class="alert alert-warning">
-        <h4>@Model.Data.NegativeGameEvent.Name</h4>
-        <p>@Model.Data.NegativeGameEvent.Description</p>
-    </div>
-}
-
-@if (Model?.Data?.Player != null)
-{
-    <div class="card mt-3">
-        <div class="card-body">
-            <h5>@Model.Data.Player.Name</h5>
-            <p>Geld: €@Model.Data.Player.Money</p>
-            <p>Experience: @Model.Data.Player.Experience</p>
+    @if (Model.Data.PositiveGameEvent != null)
+    {
+        <div class="alert alert-success">
+            <h4>@Model.Data.PositiveGameEvent.Name</h4>
+            <p>@Model.Data.PositiveGameEvent.Description</p>
+            @if (Model.Data.PositiveGameEvent.Money > 0)
+            {
+                <p>Je verdiende €@Model.Data.PositiveGameEvent.Money</p>
+            }
         </div>
-    </div>
+    }
+
+    @if (Model.Data.NegativeGameEvent != null)
+    {
+        <div class="alert alert-warning">
+            <h4>@Model.Data.NegativeGameEvent.Name</h4>
+            <p>@Model.Data.NegativeGameEvent.Description</p>
+        </div>
+    }
+
+    @if (Model.Data.Player != null)
+    {
+        <div class="card mt-3">
+            <div class="card-body">
+                <h5>@Model.Data.Player.Name</h5>
+                <p>Geld: €@Model.Data.Player.Money</p>
+                <p>Experience: @Model.Data.Player.Experience</p>
+            </div>
+        </div>
+    }
 }
-<a asp-action="Index" class="btn btn-primary mt-3">Terug</a>
+
+<a href="/Game/Index">Terug</a>

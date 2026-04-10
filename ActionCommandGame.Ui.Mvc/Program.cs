@@ -8,7 +8,7 @@ builder.Services.AddControllersWithViews();
 // SDK registreren
 builder.Services.AddHttpClient("ActionCommandGameApi", client =>
 {
-    client.BaseAddress = new Uri("https://localhost:7271/"); // API poort
+    client.BaseAddress = new Uri("http://localhost:5180/"); // API poort
 });
 
 builder.Services.AddScoped<GameSdk>();

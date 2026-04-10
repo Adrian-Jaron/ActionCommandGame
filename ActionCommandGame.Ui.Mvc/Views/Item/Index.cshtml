@@ -3,33 +3,41 @@
 
 @{
     ViewData["Title"] = "Shop";
- }
+}
 
- <h1>Shop</h1>
+<h1>Shop</h1>
 
- <table class="table">
-     <thead>
-         <tr>
-             <th>Naam</th>
-             <th>Prijs</th>
-             <th></th>
-        </tr>
-     </thead>
-
-     <tbody>
-        @foreach (var item in Model ?? [])
-        {
+@if (Model == null || !Model.Any())
+{
+    <p>Geen items beschikbaar.</p>
+}
+else
+{
+    <table class="table">
+        <thead>
             <tr>
-                <td>@item.Name</td>
-                <td>€@item.Price</td>
-                <td>
-                    <form asp-controller="Game" asp-action="Buy" method="post">
-                        <input type="hidden" name="playerId" value="1" />
-                        <input type="hidden" name="itemId" value="@item.Id" />
-                        <button type="submit" class="btn btn-sm btn-primary">Kopen</button>
-                    </form>
-                </td>
+                <th>Naam</th>
+                <th>Prijs</th>
+                <th></th>
             </tr>
-        }
-    </tbody>
- </table>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Name</td>
+                    <td>€@item.Price</td>
+                    <td>
+                        <form action="/Game/Buy" method="post">
+                            <input type="hidden" name="playerId" value="1" />
+                            <input type="hidden" name="itemId" value="@item.Id" />
+                            <button type="submit" class="btn btn-sm btn-primary">Kopen</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+<a href="/Game/Index">Terug</a>

@@ -1,9 +1,7 @@
-﻿using ActionCommandGame.Services.Model.Core;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Net.Http.Json;
+using ActionCommandGame.Services.Model.Core;
 using ActionCommandGame.Services.Model.Results;
-using System.Net.Http.Json;
+
 
 namespace ActionCommandGame.Sdk
 {
@@ -11,17 +9,12 @@ namespace ActionCommandGame.Sdk
     {
         private readonly HttpClient _httpClient = httpClientFactory.CreateClient("ActionCommandGameApi");
 
-        public async Task<ServiceResult<ItemResult>?> Get(int id)
-        {
-            var response = await _httpClient.GetAsync($"api/item/{id}");
-            return await response.Content.ReadFromJsonAsync<ServiceResult<ItemResult>>();
-
-        }
-
         public async Task<ServiceResult<IList<ItemResult>>?> Find()
         {
-            var response = await _httpClient.GetAsync($"api/item");
-            return await response.Content.ReadFromJsonAsync<ServiceResult<IList<ItemResult>>>();
+            var response = await _httpClient.GetAsync("api/item");
+            var content = await response.Content.ReadAsStringAsync();
+            Console.WriteLine($"Api response: {content}");
+            return System.Text.Json.JsonSerializer.Deserialize<ServiceResult<IList<ItemResult>>>(content);
+        }
         }
     }
-}

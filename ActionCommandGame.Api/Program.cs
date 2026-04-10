@@ -9,10 +9,8 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using ActionCommandGame.Model;
 
-
 var builder = WebApplication.CreateBuilder(args);
 
-// ✅ AppSettings EERST registreren, vóór builder.Build()
 var appSettings = new AppSettings();
 builder.Configuration.Bind(nameof(AppSettings), appSettings);
 builder.Services.AddSingleton(appSettings);
@@ -30,7 +28,6 @@ builder.Services.AddScoped<IPlayerItemService, PlayerItemService>();
 builder.Services.AddScoped<IPlayerService, PlayerService>();
 builder.Services.AddScoped<IPositiveGameEventService, PositiveGameEventService>();
 
-
 builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options =>
 {
     options.Password.RequireDigit = false;
@@ -39,14 +36,15 @@ builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options =>
     options.Password.RequireNonAlphanumeric = false;
     options.Password.RequiredLength = 4;
 })
-
 .AddEntityFrameworkStores<ActionCommandGameDbContext>()
 .AddDefaultTokenProviders();
+
 
 builder.Services.AddAuthentication(options =>
 {
     options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
     options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
 })
 .AddJwtBearer(options =>
 {
@@ -58,12 +56,12 @@ builder.Services.AddAuthentication(options =>
         ValidateIssuerSigningKey = true,
         ValidIssuer = builder.Configuration["Jwt:Issuer"],
         ValidAudience = builder.Configuration["Jwt:Audience"],
-        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Secret"]!))
+        IssuerSigningKey = new SymmetricSecurityKey(
+            Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Secret"]!))
     };
 });
+
 builder.Services.AddOpenApi();
-
-
 
 var app = builder.Build();
 

@@ -1,13 +1,10 @@
-﻿@{
-    ViewData["Title"] = "Spelen";
-}
+﻿<h1>Action Command Game</h1>
 
-<h1>Action Command Game</h1>
-
-<form asp-action="PerformAction" asp-route-playerId="1" method="get">
+<form action="/Game/PerformAction?playerId=1" method="get">
     <button type="submit" class="btn btn-primary">Mine!</button>
 </form>
 
-<a asp-controller="Item" asp-action="Index" class="btn btn-secondary">Shop</a>
-<a asp-controller="PlayerItem" asp-action="Index" asp-route-playerId="1" class="btn btn-secondary">Inventory</a>
-<a asp-controller="Player" asp-action="Index" class="btn btn-secondary">Leaderboard</a>
+
+<a href="/Item/Index">Shop</a>
+<a href="/PlayerItem/Index?playerId=1">Inventory</a>
+<a href="/Player/Index">Leaderboard</a>
